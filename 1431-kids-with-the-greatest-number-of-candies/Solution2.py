@@ -1,0 +1,6 @@
+# https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/submissions/1020665674/
+class Solution:
+    def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
+        max_candies = max(candies)
+
+        return list(map(lambda x: x + extraCandies >= max_candies, candies))
