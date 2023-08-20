@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/neither-minimum-nor-maximum/submissions/1026885445/
+// https://leetcode.com/problems/neither-minimum-nor-maximum/submissions/1026902189/
 /**
  * @param {number[]} nums
  * @return {number}
@@ -9,29 +9,22 @@ var findNonMinOrMax = function(nums) {
     }
 
     let min = Number.MAX_VALUE;
-    let max = 0;
-    let minI, maxI = -1;
+    let max = 0; 
 
     nums.forEach(function(num, idx)  { 
         if(num <= min){ 
-            min = num;
-            minI = idx;
+            min = num; 
         }
         if(num >= max){
-            max = num;
-            maxI = idx;
-        }
+            max = num; 
+        }  
     });
-   
-    const noLikedIndexes = new Set();
-    noLikedIndexes.add(minI);
-    noLikedIndexes.add(maxI);
 
-    for(let i = 0; i < nums.length; i++){
-        if(!noLikedIndexes.has(i)){
-            return nums[i];
-        }
+    for(let num of nums){ 
+        if(num != min && num != max){
+            return num;
+        } 
     } 
+
     return -1;
-    
 };
