@@ -4,7 +4,7 @@
  * @return {number}
  */
 var maximumNumberOfStringPairs = function(words) {
-    const reversed = new Map();
+    const reversed = new Set();
     let counter = 0;
 
     for(let word of words){
@@ -13,7 +13,7 @@ var maximumNumberOfStringPairs = function(words) {
             reversed.delete(word);
         }else{
             let reverseString = word.split("").reduce((acc, letter) => letter + acc, "");
-            reversed.set(reverseString, true); 
+            reversed.add(reverseString, true); 
         }
     }
  
