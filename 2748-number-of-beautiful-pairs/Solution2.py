@@ -1,21 +1,20 @@
-# https://leetcode.com/problems/number-of-beautiful-pairs/submissions/1030994796/
+# https://leetcode.com/problems/number-of-beautiful-pairs/submissions/1030996438/
 class Solution:
     def countBeautifulPairs(self, nums: List[int]) -> int:
         elems = []
         counter = 0
 
         for i in range(len(nums)-1, -1, -1): 
-            counter += sum([1 if self.areBeautiful(nums[i], val) else 0 for val in elems])
+            counter += sum([1 if self.areBeautiful(str(nums[i])[0], str(val)[-1]) else 0 for val in elems])
             elems.append(nums[i])
   
         return counter
-
-    def areBeautiful(self, num1, num2):
-        first = str(num1)[0]
-        last = str(num2)[-1]
  
-        return self.gdc(int(first), int(last)) == 1
+    @functools.cache
+    def areBeautiful(self, num1, num2):
+        return self.gdc(int(num1), int(num2)) == 1
 
+    @functools.cache
     def gdc(self, num1, num2):
         if num1 == num2:
             return num1
