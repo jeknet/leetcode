@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/count-symmetric-integers/submissions/1044067115/
+// https://leetcode.com/problems/count-symmetric-integers/submissions/1044290790/
 class Solution {
     public int countSymmetricIntegers(int low, int high) {
         int counter = 0;
@@ -7,45 +7,30 @@ class Solution {
                 counter++;
             }
         }
+
         return counter;
     }
 
-    private boolean isSymetric(int x){
+    private boolean isSymetric(int x){ 
         int left = countDigits(x);
         if(left%2!=0){
             return false;
         }
-        int right = 1;
-        int countLeft = 0;
-        int countRight = 0;
+        left--;
+        int right = 0;
+        int count = 0; 
 
-        while(right<left){
-            countLeft += getNthDigit(x, left--);
-            countRight += getNthDigit(x, right++);
-        } 
-        return countLeft == countRight;
+        while(right<left){ 
+            count += getNthDigit(x, left--) - getNthDigit(x, right++); 
+        }  
+        return count == 0;
     }
 
     private int countDigits(int x){
-        int count = 0;
-        while(x > 0){
-            count++;
-            x = (int)x/10;
-        }
-        return count;
+        return 1+(int)Math.floor(Math.log10(x));
     }
 
     private Integer getNthDigit(int x, int n){
-        int digit = 0;
-        int counter = 1;
-
-        while(true){
-            digit = x%10;
-            x = (int)x/10;
-            if(counter == n){
-                return digit;
-            }
-            counter++;
-        } 
+        return (int) Math.floor( (x/Math.pow(10,n))%10 );
     }
 }
